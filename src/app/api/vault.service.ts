@@ -8,7 +8,8 @@ export class VaultService {
 
   constructor(public httpClient: HttpClient) {}
 
-  public getVaultById(id: string) {
-    return this.httpClient.get(`http://localhost:8000/vault/${id}`);
+  public getVault(email: string) {
+    return this.httpClient.get(`http://localhost:8000/vault`, { params: { email } });
   }
+
 }

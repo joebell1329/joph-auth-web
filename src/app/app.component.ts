@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { combineLatest, interval, Observable, Subject } from 'rxjs';
+import { combineLatest, interval, Observable, of, Subject } from 'rxjs';
 import { catchError, map, shareReplay, switchMap } from 'rxjs/operators';
 
 import { IVault, IVaultTokens } from './vault/vault.model';
@@ -18,29 +18,29 @@ export class AppComponent implements OnInit {
   public unlockedVault$: Observable<IVault>;
   public tokens$: Observable<IVaultTokens>;
   public timeToNext$: Observable<number>;
-  public password$ = new Subject<string>();
+  public vaultAuth$ = new Subject<{ email: string, password: string }>();
 
   public password: string;
+  public email: string;
 
   constructor(private vaultManagementService: VaultManagementService, private vaultService: VaultService) {
   }
 
   ngOnInit(): void {
-    this.lockedVault$ = this.password$
+    this.lockedVault$ = this.vaultAuth$
       .pipe(
-        switchMap(() => this.vaultService.getVaultById('5d90ecfd18746f6abc8d7f3f')),
+        switchMap(creds => this.vaultService.getVault(creds.email)),
         map(response => ((response as any).payload) as IEncryptedData),
         shareReplay(1)
       );
 
-    this.unlockedVault$ = combineLatest(this.lockedVault$, this.password$)
+    this.unlockedVault$ = combineLatest(this.lockedVault$, this.vaultAuth$)
       .pipe(
-        switchMap(([lockedVault, password]) => this.vaultManagementService.unlockVault(lockedVault, password)),
+        switchMap(([ lockedVault, creds ]) => this.vaultManagementService.unlockVault(lockedVault, creds.password)),
         catchError((err: Error) => {
           alert(err.message);
-          return [];
-        }),
-        shareReplay(1)
+          return of([]);
+        })
       );
 
     this.tokens$ = interval(1000)
