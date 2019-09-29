@@ -5407,6 +5407,11 @@ osenv@^0.1.4, osenv@^0.1.5:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
+otpauth@^5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/otpauth/-/otpauth-5.0.3.tgz#09484ed776366cde916bb7c98dd8fd76ada0ad10"
+  integrity sha512-W3jYjsDQk19D9FCJO0MsVoJ4r7Q7/JsIqG8ETNzGNuiLFX9YMgI5vkR/FkfRvDCfjLMGGGYi6vEQfaSbR2SbSg==
+
 p-defer@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/p-defer/-/p-defer-1.0.0.tgz#9f6eb182f6c9aa8cd743004a7d4f96b196b0fb0c"
