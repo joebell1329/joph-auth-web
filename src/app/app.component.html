@@ -1,18 +1,33 @@
+<h2>Create vault</h2>
+<input type="email" [(ngModel)]="createEmail" placeholder="Enter email" />
+<input type="password" [(ngModel)]="createPassword" placeholder="Enter password" />
+<button type="button" (click)="createVault()">Create Vault</button>
+
+<h2>Open vault</h2>
 <input type="email" [(ngModel)]="email" placeholder="Enter email" />
 <input type="password" [(ngModel)]="password" placeholder="Enter password" />
 <button type="button" (click)="vaultAuth$.next({ email: email, password: password })">Unlock Vault</button>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Token</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let token of tokens$ | async">
-      <td>{{token.name}}</td>
-      <td>{{token.token}}</td>
-    </tr>
-  </tbody>
-</table>
-<div>Remaining: {{ timeToNext$ | async }}</div>
+
+<ng-container *ngIf="unlockedVault$ | async">
+  <h2>Add token</h2>
+  <input type="text" [(ngModel)]="newTokenName" placeholder="Token name" />
+  <input type="password" [(ngModel)]="newTokenSecret" placeholder="Token secret" />
+  <button type="button" (click)="addToken()">Add token</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Token</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let token of tokens$ | async">
+        <td>{{token.name}}</td>
+        <td>{{token.token}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div>Remaining: {{ timeToNext$ | async }}</div>
+</ng-container>
+
