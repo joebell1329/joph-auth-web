@@ -8,7 +8,7 @@ import { VaultManagementService } from './vault/vault-management.service';
 import { VaultService } from './api/vault.service';
 
 @Component({
-  selector: 'app-root',
+  selector: 'ja-root',
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.scss' ]
 })

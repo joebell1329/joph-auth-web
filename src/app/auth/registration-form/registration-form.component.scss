@@ -1,0 +1,17 @@
+.registration-form {
+  .lead {
+    margin-bottom: 20px;
+  }
+
+  form {
+    border: 1px solid lightgray;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    padding: 20px;
+
+    .submit-button {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
