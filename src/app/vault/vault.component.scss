@@ -2,4 +2,21 @@
   .lead {
     margin-bottom: 20px;
   }
+  .before-table {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+
+    span {
+      flex: 1;
+    }
+  }
+
+  .button-cell {
+    display: flex;
+    button {
+      flex: 1;
+      margin: 0 5px 0 5px;
+    }
+  }
 }

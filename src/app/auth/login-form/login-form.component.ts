@@ -4,7 +4,7 @@ import { VaultService } from 'src/app/api/vault.service';
 import { VaultManagementService } from 'src/app/vault/vault-management.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { IVault } from 'src/app/vault/vault.model';
-import { switchMap, map } from 'rxjs/operators';
+import { switchMap, map, tap } from 'rxjs/operators';
 import { IEncryptedData } from 'src/app/crypto/crypto.model';
 import { Router } from '@angular/router';
 
@@ -44,7 +44,8 @@ export class LoginFormComponent implements OnInit {
     this.vaultService.getVault(this.email.value)
       .pipe(
         map(result => (result as any).payload as IEncryptedData),
-        switchMap(lockedVault => this.vaultManagementService.unlockVault(lockedVault, this.password.value))
+        switchMap(lockedVault => this.vaultManagementService.unlockVault(lockedVault, this.password.value)),
+        tap(() => this.vaultManagementService.setCredentials(this.email.value, this.password.value))
       )
       .subscribe(() => this.router.navigate(['/vault']));
   }

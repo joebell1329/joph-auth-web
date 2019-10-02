@@ -1,15 +1,31 @@
 <div class="vault-component">
   <h1>Your vault</h1>
   <div class="lead">Your generated 2FA tokens.</div>
-  <p class="text-muted">Time remaining: {{ timeToNext$ | async }}</p>
+  <div class="before-table">
+    <span class="text-muted">Time remaining: {{ timeToNext$ | async }}</span>
+    <button type="button" class="btn btn-primary" (click)="showAddTokenForm()">Add a token</button>
+  </div>
   <table class="table table-striped">
     <thead>
       <tr role="heading">
         <th>Name</th>
         <th>Token</th>
+        <th *ngIf="addTokenForm"></th>
       </tr>
     </thead>
     <tbody>
+      <tr role="row" *ngIf="addTokenForm">
+        <td>
+          <input class="form-control" placeholder="Token name" (keyup)="tokenName.setValue($event.target.value)">
+        </td>
+        <td>
+          <input class="form-control" placeholder="Token secret" (keyup)="tokenSecret.setValue($event.target.value)">
+        </td>
+        <td class="button-cell">
+          <button type="button" class="btn btn-outline-danger" (click)="hideAddTokenForm()">Cancel</button>
+          <button type="button" class="btn btn-outline-success" [disabled]="!addTokenForm.valid" (click)="onAddTokenFormSubmit()">Add</button>
+        </td>
+      </tr>
       <tr role="row" *ngFor="let token of tokens$ | async">
         <td>{{ token.name }}</td>
         <td>{{ token.token }}</td>

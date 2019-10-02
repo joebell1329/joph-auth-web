@@ -12,7 +12,8 @@ import { IEncryptedData } from '../crypto/crypto.model';
 })
 export class VaultManagementService {
 
-  public unlockedVault$ = new BehaviorSubject<IVault>([]);
+  public unlockedVault$ = new BehaviorSubject<IVault>(null);
+  public credentials$ = new BehaviorSubject<{ email: string, password: string }>(null);
 
   constructor(
     private otpService: OtpService,
@@ -36,5 +37,9 @@ export class VaultManagementService {
       name: vaultItem.name,
       token: this.otpService.getCode(vaultItem.secret)
     })));
+  }
+
+  public setCredentials(email: string, password: string) {
+    this.credentials$.next({ email, password });
   }
 }
