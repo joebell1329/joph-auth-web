@@ -1,0 +1,20 @@
+<div class="login-form">
+  <h1>Log in</h1>
+  <div class="lead">Enter your credentials to unlock your vault.</div>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input id="email" type="email" class="form-control" aria-describedby="emailHint" placeholder="someone@example.com" [formControlName]="formKeys.email">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input id="password" type="password" class="form-control" aria-describedby="passwordHint" placeholder="Your vault password" [formControlName]="formKeys.password">
+    </div>
+    <div class="submit-button">
+      <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Log in</button>
+    </div>
+  </form>
+  <small class="text-muted">
+    Not got an account yet? <a routerLink="/register">Register</a> instead.
+  </small>
+</div>

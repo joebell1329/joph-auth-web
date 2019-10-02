@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of, BehaviorSubject } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 import { OtpService } from '../otp/otp.service';
 import { CryptoService } from '../crypto/crypto.service';
@@ -11,12 +11,20 @@ import { IEncryptedData } from '../crypto/crypto.model';
   providedIn: 'root'
 })
 export class VaultManagementService {
-  constructor(private otpService: OtpService,
-              private cryptoService: CryptoService) {}
+
+  public unlockedVault$ = new BehaviorSubject<IVault>([]);
+
+  constructor(
+    private otpService: OtpService,
+    private cryptoService: CryptoService
+  ) { }
 
   public unlockVault(lockedVault: IEncryptedData, password: string): Observable<IVault> {
     return this.cryptoService.decrypt(lockedVault, password)
-      .pipe(map(unlockedVault => JSON.parse(unlockedVault) as IVault));
+      .pipe(
+        map(unlockedVault => JSON.parse(unlockedVault) as IVault),
+        tap(unlockedVault => this.unlockedVault$.next(unlockedVault))
+      );
   }
 
   public lockVault(unlockedVault: IVault, password: string): Observable<IEncryptedData> {

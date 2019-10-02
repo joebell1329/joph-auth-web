@@ -8,12 +8,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegistrationFormComponent } from './auth/registration-form/registration-form.component';
 import { NavComponent } from './nav/nav.component';
+import { LoginFormComponent } from './auth/login-form/login-form.component';
+import { VaultComponent } from './vault/vault.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationFormComponent,
-    NavComponent
+    NavComponent,
+    LoginFormComponent,
+    VaultComponent
   ],
   imports: [
     BrowserModule,

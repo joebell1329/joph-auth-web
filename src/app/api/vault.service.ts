@@ -7,7 +7,7 @@ import { IEncryptedData } from '../crypto/crypto.model';
 })
 export class VaultService {
 
-  constructor(public httpClient: HttpClient) {}
+  constructor(public httpClient: HttpClient) { }
 
   public getVault(email: string) {
     return this.httpClient.get('http://localhost:8000/vault', { params: { email } });

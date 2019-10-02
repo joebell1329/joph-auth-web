@@ -1,0 +1,19 @@
+<div class="vault-component">
+  <h1>Your vault</h1>
+  <div class="lead">Your generated 2FA tokens.</div>
+  <p class="text-muted">Time remaining: {{ timeToNext$ | async }}</p>
+  <table class="table table-striped">
+    <thead>
+      <tr role="heading">
+        <th>Name</th>
+        <th>Token</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr role="row" *ngFor="let token of tokens$ | async">
+        <td>{{ token.name }}</td>
+        <td>{{ token.token }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
