@@ -2,6 +2,9 @@
   <h1>Your vault</h1>
   <div class="lead">Your generated 2FA tokens.</div>
   <div class="before-table">
+      <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width: 95.9%"></div>
+        </div>
     <span class="text-muted">Time remaining: {{ timeToNext$ | async }}</span>
     <button type="button" class="btn btn-primary" (click)="showAddTokenForm()">Add a token</button>
   </div>

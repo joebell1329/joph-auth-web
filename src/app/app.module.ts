@@ -10,6 +10,7 @@ import { RegistrationFormComponent } from './auth/registration-form/registration
 import { NavComponent } from './nav/nav.component';
 import { LoginFormComponent } from './auth/login-form/login-form.component';
 import { VaultComponent } from './vault/vault.component';
+import { B64ConverterComponent } from './tools/b64-converter/b64-converter.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { VaultComponent } from './vault/vault.component';
     RegistrationFormComponent,
     NavComponent,
     LoginFormComponent,
-    VaultComponent
+    VaultComponent,
+    B64ConverterComponent
   ],
   imports: [
     BrowserModule,

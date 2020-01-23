@@ -54,7 +54,7 @@ export class CryptoService {
    * Converts a plaintext password to a CryptoKey.
    * @param password - The plaintext password to convert.
    */
-  private getCryptoKeyForPassword(password: string): Observable<CryptoKey> {
+  public getCryptoKeyForPassword(password: string): Observable<CryptoKey> {
     const encoder = new TextEncoder();
     const encodedPassword = encoder.encode(password);
 
@@ -62,7 +62,7 @@ export class CryptoService {
       'raw',
       encodedPassword,
       'PBKDF2',
-      false,
+      true,
       [ 'deriveKey', 'deriveBits' ]
     ));
   }
@@ -72,7 +72,7 @@ export class CryptoService {
    * @param cryptoKey - The original key to derive the new key from.
    * @param salt - A randomly generated salt.
    */
-  private deriveKey(cryptoKey: CryptoKey, salt: Uint8Array): Observable<CryptoKey> {
+  public deriveKey(cryptoKey: CryptoKey, salt: Uint8Array): Observable<CryptoKey> {
     const algo: Pbkdf2Params = {
       name: 'PBKDF2',
       salt,
@@ -89,7 +89,7 @@ export class CryptoService {
       algo,
       cryptoKey,
       derivedParams,
-      false,
+      true,
       [ 'encrypt', 'decrypt' ]
     ));
   }

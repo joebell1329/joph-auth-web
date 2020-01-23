@@ -1,0 +1,16 @@
+<div class="b64-converter">
+  <h1>Base64 Converter</h1>
+  <div class="lead">Use this to convert a token secret to and from base64 encoding.</div>
+  <form [formGroup]="base64Form">
+    <div class="form-group">
+      <label [for]="formKeys.ascii">Plaintext</label>
+      <input [id]="formKeys.ascii" type="text" class="form-control" placeholder="A plaintext string" [formControlName]="formKeys.ascii">
+      <button type="button" class="btn btn-outline-primary" (click)="b64.setValue(asciiToB64())">Convert to base64</button>
+    </div>
+    <div class="form-group">
+        <label [for]="formKeys.b64">Base64 text</label>
+        <input [id]="formKeys.b64" type="text" class="form-control" placeholder="A base64 string" [formControlName]="formKeys.b64">
+        <button type="button" class="btn btn-outline-primary" (click)="ascii.setValue(b64ToAscii())">Convert to plaintext</button>
+      </div>
+  </form>
+</div>
