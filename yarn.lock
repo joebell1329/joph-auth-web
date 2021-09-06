@@ -1308,11 +1308,6 @@
     merge-source-map "^1.1.0"
     schema-utils "^2.7.0"
 
-"@ng-bootstrap/ng-bootstrap@^6.1.0":
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-6.1.0.tgz#fce7550a095aeac42108f76ac1ebd63caf8304e9"
-  integrity sha512-2GzkNJBKdeHkaUqaCAqSILPft0IzzHjMfAlAuGY6/ZLlVQ0glt5MTbIXtIhSbjR+OvlrljoXFLrvzs1LGdmE+A==
-
 "@ngtools/webpack@10.2.3":
   version "10.2.3"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-10.2.3.tgz#e4e410d1d647b6e21a69ab20c00c110464f623ea"
